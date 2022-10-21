@@ -1,6 +1,6 @@
 const $form = document.getElementById(`myForm`);
 
-// emailjs.init(process.env.PUBLICKEY);
+//emailjs.init(process.env.PUBLICKEY);
 
 // async function formEventHandler(e){
 //     e.preventDefault();
@@ -15,4 +15,16 @@ const $form = document.getElementById(`myForm`);
 // };
 
 
-// $form.addEventListener(`submit`, (e)=>{e.preventDefault()})
+
+const formEventHandler = (e) =>{
+    e.preventDefault();
+    
+    emailjs.sendForm("service_9571myr", "template_geeql87", $form, "zZGqbnRDfc_-XUYES")
+    .then((res)=>{
+        console.log(res.text);
+    }, (err) =>{
+        console.error(err);
+    })
+    e.target.reset();
+};
+$form.addEventListener(`submit`, formEventHandler)
